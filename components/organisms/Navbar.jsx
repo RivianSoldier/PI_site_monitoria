@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <div className="max-w-full w-full items-center justify-between text-sm flex">
       <Image
-        className="select-none"
+        className="select-none items-end"
         src="/logo-IMT.png"
         alt="IMT Logo"
         width={128}

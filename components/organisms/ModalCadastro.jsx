@@ -11,7 +11,9 @@ export const ModalCadastro = ({
   label2,
   label3,
   buttonTitle,
-  isMonitorModal
+  isMonitorModal,
+  isDisciplinaModal,
+  isRanking,
 }) => (
   <Dialog>
     <DialogTrigger>
@@ -24,6 +26,7 @@ export const ModalCadastro = ({
       buttonTitle={buttonTitle}
       label3={label3}
       isMonitorModal={isMonitorModal}
+      isDisciplinaModal={isDisciplinaModal}
     />
   </Dialog>
 );

@@ -1,7 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import Link from "next/link";
 
 import { Navbar } from "@/components/organisms/Navbar";
 import { ModalCadastro } from "@/components/organisms/ModalCadastro";
+import { CardUsuarios } from "@/components/molecules/CardUsuarios";
 
 export default function Home() {
   return (
@@ -43,27 +45,28 @@ export default function Home() {
           className="overflow-y-scroll"
         />
 
-        <Card className="bg-[#545E75] border-2 border-slate-900 hover:bg-slate-50 hover:border-slate-900 text-white hover:text-black transition ease-in-out hover:scale-105 w-80 h-40">
-          <CardHeader>
-            <CardTitle className="text-lg text-center">
-              Gerenciar Disciplinas
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center">
-            Cadastre e crie exercícios para a disciplina
-          </CardContent>
-        </Card>
+        <ModalCadastro
+          title={"Gerenciar Disciplinas"}
+          description={"Cadastre e crie exercícios para a disciplina"}
+          modalTitle={"Gerenciar Disciplinas"}
+          label1={"Código da disciplina"}
+          label2={"Nome da disciplina"}
+          buttonTitle={"Cadastrar"}
+          label3={"Cadastrar exercícios para uma disciplina"}
+          isDisciplinaModal={true}
+        />
 
-        <Card className="bg-[#545E75] border-2 border-slate-900 hover:bg-slate-50 hover:border-slate-900 text-white hover:text-black transition ease-in-out hover:scale-105 w-80 h-40">
-          <CardHeader>
-            <CardTitle className="text-lg text-center">
-              Ranking de Alunos
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center">
-            Vizualize o ranking de alunos
-          </CardContent>
-        </Card>
+        <Link href="/404">
+          <Dialog>
+            <DialogTrigger>
+              <CardUsuarios
+                onClick={() => {}}
+                title={"Ranking de Alunos"}
+                description={"Vizualize o ranking de alunos"}
+              />
+            </DialogTrigger>
+          </Dialog>
+        </Link>
       </div>
     </main>
   );

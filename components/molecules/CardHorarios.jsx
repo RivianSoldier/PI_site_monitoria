@@ -1,14 +1,12 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "../ui/button";
+import {
+  DialogHeader,
+  DialogTitle,
+  DialogContent,
+  DialogDescription,
+} from "../ui/dialog";
 
 export const CardHorarios = ({
   title,
@@ -16,26 +14,26 @@ export const CardHorarios = ({
   horarioInicio,
   horarioFim,
 }) => (
-  <Card className="flex flex-col content-evenly pt-2 pb-6">
-    <CardHeader className="space-y-0 p-0 sm:justify-center md:px-5">
-      <CardTitle className="text-md sm:justify-center pb-2">{title}</CardTitle>
-      <CardDescription>{description}</CardDescription>
-    </CardHeader>
-    <CardContent className="p-0">
-      <div className="flex flex-row justify-evenly p-0">
-        <div className="w-40">
-          <Label htmlFor="horario-inicio">Horario Início</Label>
-          <Input id="horario-inicio" type="time" value={horarioInicio} />
-        </div>
-        <div className="w-40">
-          <Label htmlFor="horario-fim">Horário Fim</Label>
-          <Input id="horario-fim" type="time" value={horarioFim} />
-        </div>
+  <DialogContent className="sm:max-w-[325px] md:max-w-[425px]">
+    <DialogHeader className="flex flex-col content-evenly pt-2 pb-3">
+      <DialogTitle className="text-md sm:justify-center pb-2">
+        {title}
+      </DialogTitle>
+      <DialogDescription>{description}</DialogDescription>
+    </DialogHeader>
+    <div className="flex flex-col justify-evenly p-0">
+      <div>
+        <Label htmlFor="horario-inicio">Horario Início</Label>
+        <Input id="horario-inicio" type="time" value={horarioInicio} />
       </div>
-      
-      <div className="flex justify-end px-5 pt-4">
-        <Button>Salvar Horário</Button>
+      <div>
+        <Label htmlFor="horario-fim">Horário Fim</Label>
+        <Input id="horario-fim" type="time" value={horarioFim} />
       </div>
-    </CardContent>
-  </Card>
+    </div>
+
+    <div className="flex justify-end pt-4">
+      <Button className="w-full">Salvar Horário</Button>
+    </div>
+  </DialogContent>
 );

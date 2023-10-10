@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   DialogContent,
@@ -7,8 +9,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { CardHorarios } from "./CardHorarios";
-
+import { ModalCardHorarios } from "@/components/molecules/ModalCardHorarios";
+import { ModalCardExercicios } from "@/components/molecules/ModalCardExercicios";
 export const ModalContent = ({
   modalTitle,
   label1,
@@ -16,7 +18,7 @@ export const ModalContent = ({
   label3,
   buttonTitle,
   isMonitorModal,
-  children,
+  isDisciplinaModal,
 }) => (
   <DialogContent className="sm:max-w-[325px] md:max-w-[425px]">
     <DialogHeader>
@@ -26,13 +28,21 @@ export const ModalContent = ({
           <Label htmlFor="name" className="text-start">
             {label1}
           </Label>
-          <Input id="name" placeholder="Nome completo" />
+          {isDisciplinaModal ? (
+            <Input id="codigo" placeholder="Código da disciplina" />
+          ) : (
+            <Input id="name" placeholder="Nome completo" />
+          )}
         </div>
         <div className="flex flex-col gap-4">
           <Label htmlFor="E-mail" className="text-start">
             {label2}
           </Label>
-          <Input type="email" id="e-mail" placeholder="00-00000-00@maua.br" />
+          {isDisciplinaModal ? (
+            <Input id="nome" placeholder="Nome da disciplina" />
+          ) : (
+            <Input type="email" id="e-mail" placeholder="00-00000-00@maua.br" />
+          )}
         </div>
         {/* tabs */}
         {isMonitorModal && (
@@ -46,40 +56,64 @@ export const ModalContent = ({
                 <TabsTrigger value="Sexta-feira">Sex</TabsTrigger>
               </TabsList>
               <TabsContent value="Segunda-feira">
-                <CardHorarios
-                  title={"Horários de Atendimento"}
-                  description={"Segunda-feira"}
-                />
+                <div className="flex justify-between">
+                  <ModalCardHorarios
+                    title="Horário presencial"
+                    description="Segunda-feira"
+                  />
+                  <ModalCardHorarios
+                    title="Horário online"
+                    description="Segunda-feira"
+                  />
+                </div>
               </TabsContent>
               <TabsContent value="Terça-feira">
-                <CardHorarios
-                  title={"Horários de Atendimento"}
-                  description={"Terça-feira"}
-                />
+                <div className="flex justify-between">
+                  <ModalCardHorarios
+                    title="Horário presencial"
+                    description="Terça-feira"
+                  />
+                  <ModalCardHorarios
+                    title="Horário online"
+                    description="Terça-feira"
+                  />
+                </div>
               </TabsContent>
               <TabsContent value="Quarta-feira">
-                <CardHorarios
-                  title={"Horários de Atendimento"}
-                  description={"Quarta-feira"}
-                  horarioInicio={"00:00"}
-                  horarioFim={"00:00"}
-                />
+                <div className="flex justify-between">
+                  <ModalCardHorarios
+                    title="Horário presencial"
+                    description="Quarta-feira"
+                  />
+                  <ModalCardHorarios
+                    title="Horário online"
+                    description="Quarta-feira"
+                  />
+                </div>
               </TabsContent>
               <TabsContent value="Quinta-feira">
-                <CardHorarios
-                  title={"Horários de Atendimento"}
-                  description={"Quinta-feira"}
-                  horarioInicio={"00:00"}
-                  horarioFim={"00:00"}
-                />
+                <div className="flex justify-between">
+                  <ModalCardHorarios
+                    title="Horário presencial"
+                    description="Quinta-feira"
+                  />
+                  <ModalCardHorarios
+                    title="Horário online"
+                    description="Quinta-feira"
+                  />
+                </div>
               </TabsContent>
               <TabsContent value="Sexta-feira">
-                <CardHorarios
-                  title={"Horários de Atendimento"}
-                  description={"Sexta-feira"}
-                  horarioInicio={"00:00"}
-                  horarioFim={"00:00"}
-                />
+                <div className="flex justify-between">
+                  <ModalCardHorarios
+                    title="Horário presencial"
+                    description="Sexta-feira"
+                  />
+                  <ModalCardHorarios
+                    title="Horário online"
+                    description="Sexta-feira"
+                  />
+                </div>
               </TabsContent>
             </Tabs>
           </div>
@@ -87,16 +121,19 @@ export const ModalContent = ({
 
         <div className="flex flex-col gap-6 mt-4">
           <Button>{buttonTitle}</Button>
-          {!isMonitorModal && (
+          {!isMonitorModal && !isDisciplinaModal && (
             <div>
               <Label htmlFor="CSV_cadastro">{label3}</Label>
-              <Input id="CSV_cadastro" type="file" />
+              <Input className="cursor-pointer" id="CSV_cadastro" type="file" />
             </div>
           )}
           {isMonitorModal && (
             <Button variant="secondary">
               Visualizar Horários dos Monitores
             </Button>
+          )}
+          {isDisciplinaModal && (
+            <ModalCardExercicios title="Cadastre exercicios para uma disciplina"></ModalCardExercicios>
           )}
         </div>
       </div>
