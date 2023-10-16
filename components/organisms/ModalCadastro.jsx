@@ -1,5 +1,4 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-
 import { CardUsuarios } from "../molecules/CardUsuarios";
 import { ModalContent } from "../molecules/ModalContent";
 import { CardExercicios } from "../molecules/CardExercicios";
