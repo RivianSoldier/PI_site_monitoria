@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { ModalCardHorarios } from "@/components/molecules/ModalCardHorarios";
 import { ModalCardExercicios } from "@/components/molecules/ModalCardExercicios";
+import { CardExercicios } from "./CardExercicios";
 export const ModalContent = ({
   modalTitle,
   label1,
@@ -19,32 +20,43 @@ export const ModalContent = ({
   buttonTitle,
   isMonitorModal,
   isDisciplinaModal,
+  isMonitorScreen,
 }) => (
+  
   <DialogContent className="sm:max-w-[325px] md:max-w-[425px]">
     <DialogHeader>
       <DialogTitle>{modalTitle}</DialogTitle>
       <div className="flex flex-col py-4">
-        <div className="flex flex-col py-4 gap-4">
-          <Label htmlFor="name" className="text-start">
-            {label1}
-          </Label>
-          {isDisciplinaModal ? (
-            <Input id="codigo" placeholder="Código da disciplina" />
-          ) : (
-            <Input id="name" placeholder="Nome completo" />
-          )}
-        </div>
-        <div className="flex flex-col gap-4">
-          <Label htmlFor="E-mail" className="text-start">
-            {label2}
-          </Label>
-          {isDisciplinaModal ? (
-            <Input id="nome" placeholder="Nome da disciplina" />
-          ) : (
-            <Input type="email" id="e-mail" placeholder="00-00000-00@maua.br" />
-          )}
-        </div>
-        {/* tabs */}
+        {isMonitorScreen ? (
+          <></>
+        ) : (
+          <div>
+            <div className="flex flex-col py-4 gap-4">
+              <Label htmlFor="name" className="text-start">
+                {label1}
+              </Label>
+              {isDisciplinaModal ? (
+                <Input id="codigo" placeholder="Código da disciplina" />
+              ) : (
+                <Input id="name" placeholder="Nome completo" />
+              )}
+            </div>
+            <div className="flex flex-col gap-4">
+              <Label htmlFor="E-mail" className="text-start">
+                {label2}
+              </Label>
+              {isDisciplinaModal ? (
+                <Input id="nome" placeholder="Nome da disciplina" />
+              ) : (
+                <Input
+                  type="email"
+                  id="e-mail"
+                  placeholder="00-00000-00@maua.br"
+                />
+              )}
+            </div>
+          </div>
+        )}
         {isMonitorModal && (
           <div className="flex justify-center mt-4 sm:max-w-full">
             <Tabs defaultValue="Segunda-feira" className="flex flex-col w-full">

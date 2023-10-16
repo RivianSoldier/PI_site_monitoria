@@ -22,6 +22,7 @@ export const CardExercicios = ({
   disciplina,
   tituloExercicio,
   descricaoExercicio,
+  isMonitorScreenExModal,
 }) => (
   <DialogContent className="sm:max-w-[325px] md:max-w-[425px]">
     <DialogHeader className="flex flex-col content-evenly pt-2 pb-3">
@@ -61,8 +62,13 @@ export const CardExercicios = ({
       </div>
     </div>
 
-    <div className="flex justify-end pt-4">
+    <div className="flex flex-col justify-end gap-4">
       <Button className="w-full">Salvar Exercício</Button>
+      {isMonitorScreenExModal && (
+        <Button className="w-full" variant="secondary">
+          Visualizar exercícios
+        </Button>
+      )}
     </div>
   </DialogContent>
 );
