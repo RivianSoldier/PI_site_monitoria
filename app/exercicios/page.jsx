@@ -3,7 +3,7 @@ import { Navbar } from "@/components/organisms/Navbar";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans">
+    <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
       <div className="p-10">
         <p className="font-sans text-6xl text-center font-bold">Exercícios</p>
