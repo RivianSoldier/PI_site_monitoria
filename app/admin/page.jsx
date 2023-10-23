@@ -1,9 +1,14 @@
+"use client";
+import React from "react";
+
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 
 import { Navbar } from "@/components/organisms/Navbar";
 import { ModalCadastro } from "@/components/organisms/ModalCadastro";
 import { CardUsuarios } from "@/components/molecules/CardUsuarios";
+
+import { ProfileContent } from "../App"; // Import the ProfileContent component
 
 export default function HomeAdmin() {
   return (
@@ -68,6 +73,7 @@ export default function HomeAdmin() {
           </Dialog>
         </Link>
       </div>
+      <ProfileContent />
     </main>
   );
 }
