@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { SignOutButton } from "@/components/SignOutButton";
 
 function Navbar() {
   return (
@@ -49,7 +50,7 @@ function Navbar() {
               <DropdownMenuItem>Alterar avatar</DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Log out</DropdownMenuItem>
+            <SignOutButton />
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

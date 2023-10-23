@@ -78,12 +78,6 @@ const MainContent = () => {
       <AuthenticatedTemplate>
         <ProfileContent />
       </AuthenticatedTemplate>
-
-      {/* <UnauthenticatedTemplate>
-        <h5>
-          <center>Please sign-in to see your profile information.</center>
-        </h5>
-      </UnauthenticatedTemplate> */}
     </div>
   );
 };
@@ -92,7 +86,7 @@ export default function App() {
   const isAuthenticated = useIsAuthenticated();
 
   if (isAuthenticated) {
-    return <></>; // Return an empty fragment if the user is authenticated
+    return <></>;
   }
 
   return (

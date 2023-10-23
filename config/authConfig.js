@@ -9,7 +9,7 @@ require("dotenv").config();
 
 export const msalConfig = {
   auth: {
-    clientId: process.env.AZURE_AD_CLIENT_ID,
+    clientId: "08cf4f6b-5e50-4cb6-857b-47be28ddd486",
     authority: "https://login.microsoftonline.com/common/",
     redirectUri: "http://localhost:3000/",
   },

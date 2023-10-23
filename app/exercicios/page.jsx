@@ -1,3 +1,4 @@
+"use client";
 import { ExerciciosCard } from "@/components/organisms/ExerciciosCard";
 import { Navbar } from "@/components/organisms/Navbar";
 
