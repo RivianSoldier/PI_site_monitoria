@@ -17,9 +17,14 @@ export const SignInButton = () => {
           console.log(e);
         });
     } else if (loginType === "redirect") {
-      instance.loginRedirect(loginRequest).catch((e) => {
-        console.log(e);
-      });
+      instance
+        .loginRedirect(loginRequest)
+        .then(() => {
+          window.location.href = "/admin"; // Redirect to /admin after successful login
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
   };
   return (
@@ -31,13 +36,13 @@ export const SignInButton = () => {
         Login com Microsoft
         <TfiMicrosoftAlt />
       </Button>
-      <Button
+      {/* <Button
         className="w-64 flex justify-evenly"
         onClick={() => handleLogin("redirect")}
       >
         Login com Microsoft
         <TfiMicrosoftAlt />
-      </Button>
+      </Button> */}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useMsal } from "@azure/msal-react";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 /**
  * Renders a sign out button
@@ -20,13 +21,8 @@ export const SignOutButton = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      <button onClick={() => handleLogout("popup")}>
-        Sign out using Popup
-      </button>
-      <button onClick={() => handleLogout("redirect")}>
-        Sign out using Redirect
-      </button>
-    </div>
+    <DropdownMenuItem onClick={() => handleLogout("popup")}>
+      Log out
+    </DropdownMenuItem>
   );
 };
