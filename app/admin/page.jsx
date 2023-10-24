@@ -64,7 +64,7 @@ export default function HomeAdmin() {
             isDisciplinaModal={true}
           />
 
-          <Link href="/404">
+          <Link href="/ranking">
             <Dialog>
               <DialogTrigger>
                 <CardUsuarios
@@ -76,7 +76,7 @@ export default function HomeAdmin() {
             </Dialog>
           </Link>
         </div>
-        <ProfileContent />
+        {/* <ProfileContent /> */}
       </main>
     );
   } else {
