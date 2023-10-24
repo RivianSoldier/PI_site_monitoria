@@ -1,3 +1,4 @@
+'use client';
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 

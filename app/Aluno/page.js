@@ -1,3 +1,4 @@
+'use client';
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 
@@ -14,9 +15,8 @@ export default function Home() {
           Bem vindo aluno
         </p>
       </div>
-      <div className="flex flex-col items-center max-w-5xl w-full pt-12 mb-6">
-        <div className="mb-3 flex">
-          <Link href="/404">
+      <div className="lg:max-w-3xl flex flex-wrap align max-w-5xl w-full justify-center gap-y-3 gap-x-5 pt-12">
+          <Link href="/ranking">
             <Dialog>
               <DialogTrigger>
                 <CardUsuarios
@@ -27,7 +27,6 @@ export default function Home() {
               </DialogTrigger>
             </Dialog>
           </Link>
-          <div className="mx-3"></div>
           <Link href="/404">
             <Dialog>
               <DialogTrigger>
@@ -39,10 +38,7 @@ export default function Home() {
               </DialogTrigger>
             </Dialog>
           </Link>
-        </div>
-
-        <div>
-          <Link href="/404">
+                    <Link href="/exercicios">
             <Dialog>
               <DialogTrigger>
                 <CardUsuarios
@@ -54,7 +50,6 @@ export default function Home() {
             </Dialog>
           </Link>
         </div>
-      </div>
     </main>
   );
 }
