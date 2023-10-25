@@ -36,7 +36,7 @@ export default function Home() {
           className="overflow-y-scroll"
           isMonitorScreen={true}
         />
-        <Link href="/404">
+        <Link href="/ranking">
           <Dialog>
             <DialogTrigger>
               <CardUsuarios

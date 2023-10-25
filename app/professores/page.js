@@ -27,7 +27,7 @@ export default function Home() {
               </DialogTrigger>
             </Dialog>
           </Link>
-          <Link href="/404">
+          <Link href="/horario_monitor">
             <Dialog>
               <DialogTrigger>
                 <CardUsuarios
