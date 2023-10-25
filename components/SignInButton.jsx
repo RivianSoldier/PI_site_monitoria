@@ -36,13 +36,6 @@ export const SignInButton = () => {
         Login com Microsoft
         <TfiMicrosoftAlt />
       </Button>
-      {/* <Button
-        className="w-64 flex justify-evenly"
-        onClick={() => handleLogin("redirect")}
-      >
-        Login com Microsoft
-        <TfiMicrosoftAlt />
-      </Button> */}
     </div>
   );
 };

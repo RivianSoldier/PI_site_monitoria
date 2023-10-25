@@ -1,5 +1,4 @@
 import { LogLevel } from "@azure/msal-browser";
-require("dotenv").config();
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -9,7 +8,7 @@ require("dotenv").config();
 
 export const msalConfig = {
   auth: {
-    clientId: "08cf4f6b-5e50-4cb6-857b-47be28ddd486",
+    clientId: process.env.NEXT_PUBLIC_AZURE_CLIENT_ID,
     authority: "https://login.microsoftonline.com/common/",
     redirectUri: "http://localhost:3000/",
   },
