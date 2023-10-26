@@ -22,6 +22,9 @@ msalInstance.addEventCallback((event) => {
 export default function RootLayout({ children, pageProps }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <title>Monitoria Mauá</title>
+      </head>
       <body className={inter.className}>
         <MsalProvider instance={msalInstance}>{children}</MsalProvider>
       </body>

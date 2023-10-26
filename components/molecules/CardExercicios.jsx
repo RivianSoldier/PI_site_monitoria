@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
 
 export const CardExercicios = ({
   title,
@@ -65,9 +66,11 @@ export const CardExercicios = ({
     <div className="flex flex-col justify-end gap-4">
       <Button className="w-full">Salvar Exercício</Button>
       {isMonitorScreenExModal && (
-        <Button className="w-full" variant="secondary">
-          Visualizar exercícios
-        </Button>
+        <Link className="w-full" href="/exercicios">
+          <Button className="w-full" variant="secondary">
+            Visualizar exercícios
+          </Button>
+        </Link>
       )}
     </div>
   </DialogContent>

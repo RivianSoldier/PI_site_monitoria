@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { ModalCardHorarios } from "@/components/molecules/ModalCardHorarios";
 import { ModalCardExercicios } from "@/components/molecules/ModalCardExercicios";
 import { CardExercicios } from "./CardExercicios";
+import Link from "next/link";
 export const ModalContent = ({
   modalTitle,
   label1,
@@ -22,7 +23,6 @@ export const ModalContent = ({
   isDisciplinaModal,
   isMonitorScreen,
 }) => (
-  
   <DialogContent className="sm:max-w-[325px] md:max-w-[425px]">
     <DialogHeader>
       <DialogTitle>{modalTitle}</DialogTitle>
@@ -140,9 +140,11 @@ export const ModalContent = ({
             </div>
           )}
           {isMonitorModal && (
-            <Button variant="secondary">
-              Visualizar Horários dos Monitores
-            </Button>
+            <Link className="w-full" href="/horario_monitor">
+              <Button className="w-full" variant="secondary">
+                Visualizar Horários dos Monitores
+              </Button>
+            </Link>
           )}
           {isDisciplinaModal && (
             <ModalCardExercicios title="Cadastre exercicios para uma disciplina"></ModalCardExercicios>
