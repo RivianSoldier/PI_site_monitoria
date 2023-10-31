@@ -8,10 +8,15 @@ export const ModalCardExercicios = ({
   disciplina,
   tituloExercicio,
   descricaoExercicio,
+  modifyAccess,
 }) => (
   <Dialog>
     <DialogTrigger>
-      <ButtonOpenModal title={title} isDisciplina={true} />
+      <ButtonOpenModal
+        title={title}
+        isDisciplina={true}
+        modifyAccess={modifyAccess}
+      />
     </DialogTrigger>
     <CardExercicios
       title={title}

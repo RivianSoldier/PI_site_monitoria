@@ -1,6 +1,6 @@
 "use client";
-import { ExerciciosCard } from "@/components/organisms/ExerciciosCard";
-import { Navbar } from "@/components/organisms/Navbar";
+import { ExerciciosCard } from "./organisms/ExerciciosCard";
+import { Navbar } from "./organisms/Navbar";
 import {
   Select,
   SelectTrigger,
@@ -10,8 +10,12 @@ import {
   SelectLabel,
   SelectItem,
 } from "@/components/ui/select";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "./ui/button";
+import { ModalCardExercicios } from "./molecules/ModalCardExercicios";
+import { CardExercicios } from "./molecules/CardExercicios";
 
-export default function TelaExercicios() {
+export default function TelaExercicios({ modifyAccess }) {
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
@@ -19,7 +23,7 @@ export default function TelaExercicios() {
         <p className="font-sans text-6xl text-center font-bold">Exercícios</p>
       </div>
       <div>
-        <div className="pb-4">
+        <div className="pb-4 flex flex-col justify-between md:flex-row gap-4">
           <Select>
             <SelectTrigger className="lg:w-1/3 md:w-1/2 sm:w-full">
               <SelectValue placeholder="Selecione uma disciplina" />
@@ -45,6 +49,16 @@ export default function TelaExercicios() {
               </SelectGroup>
             </SelectContent>
           </Select>
+          {modifyAccess && (
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button>Cadastrar novo exercício</Button>
+              </DialogTrigger>
+              <CardExercicios
+                title={"Cadastrar novo exercício para uma disciplina"}
+              />
+            </Dialog>
+          )}
         </div>
         <div className="flex flex-col gap-8 mt-5">
           <ExerciciosCard title={"Exercício 1"} />
