@@ -8,6 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+  SelectItem,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 export default function TelaMonitor() {
   const monitores = [
@@ -91,6 +101,26 @@ export default function TelaMonitor() {
         <p className="font-sans text-6xl text-center font-bold">
           Horários dos Monitores
         </p>
+      </div>
+      <div className="flex justify-start">
+        <div className="pb-4 flex flex-col justify-start w-full">
+          <Select>
+            <SelectTrigger className="w-full ">
+              <SelectValue placeholder="Selecione um horário" />
+            </SelectTrigger>
+            <SelectContent className="w-80 md:w-full ml-auto">
+              <SelectGroup>
+                <SelectLabel></SelectLabel>
+                <SelectItem value="presencial">
+                  Presencial
+                </SelectItem>
+                <SelectItem value="online">
+                  Online
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>      
       </div>
       <div className="rounded-lg border-2 border-slate-900 w-80 sm:w-[500px] md:w-[752px] lg:w-[1000px] xl:w-[1264px] mt-4">
         <Table className="bg-slate-50 rounded-md">
