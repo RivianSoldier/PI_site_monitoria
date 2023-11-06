@@ -1,5 +1,4 @@
 "use client";
-import { ExerciciosCard } from "./organisms/ExerciciosCard";
 import { Navbar } from "./organisms/Navbar";
 import {
   Select,
@@ -10,12 +9,28 @@ import {
   SelectLabel,
   SelectItem,
 } from "@/components/ui/select";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "./ui/button";
-import { ModalCardExercicios } from "./molecules/ModalCardExercicios";
-import { CardExercicios } from "./molecules/CardExercicios";
 
-export default function TelaExercicios({ modifyAccess }) {
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogHeader,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "./ui/button";
+import { CardExercicios } from "./molecules/CardExercicios";
+import { CardTelaExercicio } from "./molecules/CardTelaExercicio";
+async function getdata() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = await res.json();
+  return posts;
+}
+
+// eslint-disable-next-line @next/next/no-async-client-component
+export default async function TelaExercicios({ modifyAccess }) {
+  const posts = await getdata();
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
@@ -61,17 +76,20 @@ export default function TelaExercicios({ modifyAccess }) {
           )}
         </div>
         <div className="flex flex-col gap-8 mt-5">
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
-          <ExerciciosCard title={"Exercício 1"} />
+          <Dialog>
+            <DialogTrigger>
+              <CardTelaExercicio title={"Exercício 1"} />
+            </DialogTrigger>
+            <DialogContent className="flex flex-col w-full">
+              <DialogHeader>Exercício 1</DialogHeader>
+              <DialogDescription className="">
+                est rerum tempore vitae\nsequi sint nihil reprehenderit dolor
+                beatae ea dolores neque\nfugiat blanditiis voluptate porro vel
+                nihil molestiae ut reiciendis\nqui aperiam non debitis possimus
+                qui neque nisi nulla
+              </DialogDescription>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </main>
