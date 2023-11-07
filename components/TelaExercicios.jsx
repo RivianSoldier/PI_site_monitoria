@@ -34,7 +34,11 @@ async function getusers() {
 }
 
 // eslint-disable-next-line @next/next/no-async-client-component
-export default async function TelaExercicios({ modifyAccess }) {
+export default async function TelaExercicios({
+  modifyAccess,
+  viewOnly,
+  isProfessor,
+}) {
   const posts = await getdata();
   const users = await getusers();
 
@@ -71,7 +75,7 @@ export default async function TelaExercicios({ modifyAccess }) {
               </SelectGroup>
             </SelectContent>
           </Select>
-          {modifyAccess && (
+          {modifyAccess && !isProfessor && (
             <Dialog>
               <DialogTrigger asChild>
                 <Button>Cadastrar novo exercício</Button>
@@ -107,6 +111,7 @@ export default async function TelaExercicios({ modifyAccess }) {
                           body={post.body}
                           id={user.id}
                           modifyAccess={modifyAccess}
+                          viewOnly={viewOnly}
                         />
                       ))
                     ) : (
@@ -116,6 +121,7 @@ export default async function TelaExercicios({ modifyAccess }) {
                         body={post.body}
                         id={post.id}
                         modifyAccess={modifyAccess}
+                        viewOnly={viewOnly}
                       />
                     )}
                   </DialogContent>

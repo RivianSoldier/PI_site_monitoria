@@ -1,5 +1,7 @@
 import TelaExercicios from "@/components/TelaExercicios";
 
 export default function ExerciciosPage() {
-  return <TelaExercicios />;
+  return (
+    <TelaExercicios modifyAccess={true} viewOnly={true} isProfessor={true} />
+  );
 }

@@ -17,7 +17,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
 
-export const ModalTelaExercicios = ({ modifyAccess, name, body, id }) => {
+export const ModalTelaExercicios = ({
+  viewOnly,
+  modifyAccess,
+  name,
+  body,
+  id,
+}) => {
   return (
     <div>
       {modifyAccess ? (
@@ -32,11 +38,20 @@ export const ModalTelaExercicios = ({ modifyAccess, name, body, id }) => {
                 <DialogHeader>Resposta de {name}</DialogHeader>
                 <DialogDescription className="flex flex-col gap-3">
                   {body}
-                  <Label>Atribuir nota</Label>
-                  <div className="flex flex-row gap-3">
-                    <Input type="number" min="1" max="10" className="w-1/2" />
-                    <Button className="w-1/2">Enviar</Button>
-                  </div>
+                  {!viewOnly && (
+                    <>
+                      <Label>Atribuir nota</Label>
+                      <div className="flex flex-row gap-3">
+                        <Input
+                          type="number"
+                          min="1"
+                          max="10"
+                          className="w-1/2"
+                        />
+                        <Button className="w-1/2">Enviar</Button>
+                      </div>
+                    </>
+                  )}
                 </DialogDescription>
               </DialogContent>
             </Dialog>

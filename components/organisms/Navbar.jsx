@@ -1,5 +1,3 @@
-import React from "react";
-
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -18,12 +16,13 @@ function Navbar() {
   return (
     <div className="max-w-full w-full items-center justify-between text-sm flex">
       <Image
-        className="select-none items-end"
+        className="select-none items-end cursor-pointer"
         src="/logo-IMT.png"
         alt="IMT Logo"
         width={128}
         height={24}
         priority
+        onClick={() => window.location.replace("/admin")}
       />
       <div>
         <DropdownMenu>
