@@ -14,17 +14,14 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
-  DialogTitle,
   DialogDescription,
   DialogHeader,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { CardExercicios } from "./molecules/CardExercicios";
 import { CardTelaExercicio } from "./molecules/CardTelaExercicio";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+
+import { ModalTelaExercicios } from "./molecules/ModalTelaExercicios";
 async function getdata() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
@@ -94,52 +91,35 @@ export default async function TelaExercicios({ modifyAccess }) {
               <DialogContent className="flex flex-col w-full overflow-auto max-h-screen">
                 <DialogHeader>{post.title}</DialogHeader>
                 <DialogDescription className="">{post.body}</DialogDescription>
-
                 <Dialog>
                   <DialogTrigger>
                     <Button className="flex w-full">
-                      Visualizar respostas
+                      {modifyAccess ? "Visualizar respostas" : "Responder"}
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="overflow-auto max-h-screen pt-12">
-                    {users.map((user) => {
-                      return (
-                        <Card key={user.id} className="flex w-full">
-                          <CardContent className="flex flex-row items-center p-2 flex-grow justify-between">
-                            <CardTitle className="text-start text-sm">
-                              {user.name}
-                            </CardTitle>
 
-                            <Dialog>
-                              <DialogTrigger>
-                                <Button>Resposta</Button>
-                              </DialogTrigger>
-                              <DialogContent className="overflow-auto max-h-screen">
-                                <DialogHeader>
-                                  Resposta de {user.name}
-                                </DialogHeader>
-                                <DialogDescription className="flex flex-col gap-3">
-                                  {post.body}
-                                  <Label>Atribuir nota</Label>
-                                  <div className="flex flex-row gap-3">
-                                    <Input
-                                      type="number"
-                                      min="1"
-                                      max="10"
-                                      className="w-1/2"
-                                    />
-                                    <Button className="w-1/2">Enviar</Button>
-                                  </div>
-                                </DialogDescription>
-                              </DialogContent>
-                            </Dialog>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
+                  <DialogContent className="overflow-auto max-h-screen pt-12">
+                    {modifyAccess ? (
+                      users.map((user) => (
+                        <ModalTelaExercicios
+                          key={user.id}
+                          name={user.name}
+                          body={post.body}
+                          id={user.id}
+                          modifyAccess={modifyAccess}
+                        />
+                      ))
+                    ) : (
+                      <ModalTelaExercicios
+                        key={post.id}
+                        name={post.title}
+                        body={post.body}
+                        id={post.id}
+                        modifyAccess={modifyAccess}
+                      />
+                    )}
                   </DialogContent>
                 </Dialog>
-
                 <div className="flex justify-evenly gap-2">
                   <Button className="w-1/2" variant="secondary">
                     Editar

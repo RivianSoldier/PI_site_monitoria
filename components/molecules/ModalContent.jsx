@@ -11,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { ModalCardHorarios } from "@/components/molecules/ModalCardHorarios";
 import { ModalCardExercicios } from "@/components/molecules/ModalCardExercicios";
-import { CardExercicios } from "./CardExercicios";
 import Link from "next/link";
 export const ModalContent = ({
   modalTitle,
