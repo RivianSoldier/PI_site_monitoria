@@ -9,44 +9,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function TelaRanking() {
-  const alunos = [
-    {
-      posicao: "1",
-      nome: "João da Silva",
-      pontuacao: "10",
-    },
-    {
-      posicao: "2",
-      nome: "João da Silva",
-      pontuacao: "9",
-    },
-    {
-      posicao: "3",
-      nome: "João da Silva",
-      pontuacao: "8",
-    },
-    {
-      posicao: "4",
-      nome: "João da Silva",
-      pontuacao: "7",
-    },
-    {
-      posicao: "5",
-      nome: "João da Silva",
-      pontuacao: "6",
-    },
-    {
-      posicao: "6",
-      nome: "João da Silva",
-      pontuacao: "5",
-    },
-    {
-      posicao: "7",
-      nome: "João da Silva",
-      pontuacao: "4",
-    },
-  ];
+async function getdata() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await res.json();
+  return users;
+}
+
+// eslint-disable-next-line @next/next/no-async-client-component
+export default async function TelaRanking() {
+  const users = await getdata();
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
@@ -65,15 +36,11 @@ export default function TelaRanking() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {alunos.map((aluno) => (
-              <TableRow className="text-center " key={aluno.posicao}>
-                <TableCell className="font-medium py-5">
-                  {aluno.posicao}
-                </TableCell>
-                <TableCell className="py-5">{aluno.nome}</TableCell>
-                <TableCell className="text-center py-5">
-                  {aluno.pontuacao}
-                </TableCell>
+            {users.map((user) => (
+              <TableRow className="text-center " key={user.id}>
+                <TableCell className="font-medium py-5">{user.id}</TableCell>
+                <TableCell className="py-5">{user.name}</TableCell>
+                <TableCell className="text-center py-5">{user.id}</TableCell>
               </TableRow>
             ))}
           </TableBody>
