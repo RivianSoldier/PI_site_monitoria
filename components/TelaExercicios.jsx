@@ -22,15 +22,25 @@ import {
 import { Button } from "./ui/button";
 import { CardExercicios } from "./molecules/CardExercicios";
 import { CardTelaExercicio } from "./molecules/CardTelaExercicio";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 async function getdata() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
   return posts;
 }
+async function getusers() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await res.json();
+  return users;
+}
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function TelaExercicios({ modifyAccess }) {
   const posts = await getdata();
+  const users = await getusers();
+
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
@@ -76,20 +86,71 @@ export default async function TelaExercicios({ modifyAccess }) {
           )}
         </div>
         <div className="flex flex-col gap-8 mt-5">
-          <Dialog>
-            <DialogTrigger>
-              <CardTelaExercicio title={"Exercício 1"} />
-            </DialogTrigger>
-            <DialogContent className="flex flex-col w-full">
-              <DialogHeader>Exercício 1</DialogHeader>
-              <DialogDescription className="">
-                est rerum tempore vitae\nsequi sint nihil reprehenderit dolor
-                beatae ea dolores neque\nfugiat blanditiis voluptate porro vel
-                nihil molestiae ut reiciendis\nqui aperiam non debitis possimus
-                qui neque nisi nulla
-              </DialogDescription>
-            </DialogContent>
-          </Dialog>
+          {posts.map((post) => (
+            <Dialog key={post.id}>
+              <DialogTrigger>
+                <CardTelaExercicio title={post.title} />
+              </DialogTrigger>
+              <DialogContent className="flex flex-col w-full overflow-auto max-h-screen">
+                <DialogHeader>{post.title}</DialogHeader>
+                <DialogDescription className="">{post.body}</DialogDescription>
+
+                <Dialog>
+                  <DialogTrigger>
+                    <Button className="flex w-full">
+                      Visualizar respostas
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="overflow-auto max-h-screen pt-12">
+                    {users.map((user) => {
+                      return (
+                        <Card key={user.id} className="flex w-full">
+                          <CardContent className="flex flex-row items-center p-2 flex-grow justify-between">
+                            <CardTitle className="text-start text-sm">
+                              {user.name}
+                            </CardTitle>
+
+                            <Dialog>
+                              <DialogTrigger>
+                                <Button>Resposta</Button>
+                              </DialogTrigger>
+                              <DialogContent className="overflow-auto max-h-screen">
+                                <DialogHeader>
+                                  Resposta de {user.name}
+                                </DialogHeader>
+                                <DialogDescription className="flex flex-col gap-3">
+                                  {post.body}
+                                  <Label>Atribuir nota</Label>
+                                  <div className="flex flex-row gap-3">
+                                    <Input
+                                      type="number"
+                                      min="1"
+                                      max="10"
+                                      className="w-1/2"
+                                    />
+                                    <Button className="w-1/2">Enviar</Button>
+                                  </div>
+                                </DialogDescription>
+                              </DialogContent>
+                            </Dialog>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </DialogContent>
+                </Dialog>
+
+                <div className="flex justify-evenly gap-2">
+                  <Button className="w-1/2" variant="secondary">
+                    Editar
+                  </Button>
+                  <Button className="w-1/2" variant="destructive">
+                    Excluir
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+          ))}
         </div>
       </div>
     </main>

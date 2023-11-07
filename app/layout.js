@@ -2,7 +2,7 @@
 
 "use client";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter,  } from "next/font/google";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "../config/authConfig";

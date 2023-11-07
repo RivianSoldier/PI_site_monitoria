@@ -21,7 +21,7 @@ export const ModalContent = ({
   buttonTitle,
   isMonitorModal,
   isDisciplinaModal,
-  isMonitorScreen,
+  isMonitorScreen, 
 }) => (
   <DialogContent className="sm:max-w-[325px] md:max-w-[425px]">
     <DialogHeader>
