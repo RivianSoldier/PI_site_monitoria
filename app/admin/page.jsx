@@ -7,6 +7,9 @@ import Link from "next/link";
 import { Navbar } from "@/components/organisms/Navbar";
 import { ModalCadastro } from "@/components/organisms/ModalCadastro";
 import { CardUsuarios } from "@/components/molecules/CardUsuarios";
+import { ModalCadastroAlunoEProfessor } from "@/components/molecules/ModalCadastroAlunoEProfessor";
+import { ModalCadastroDisciplina } from "@/components/molecules/ModalCadastroDisciplina";
+import { ModalCadastroMonitor } from "@/components/molecules/ModalCadastroMonitor";
 
 export default function HomeAdmin() {
   return (
@@ -18,24 +21,16 @@ export default function HomeAdmin() {
         </p>
       </div>
       <div className="flex flex-wrap align max-w-5xl w-full justify-center gap-y-3 gap-x-5 pt-12">
-        <ModalCadastro
-          title={"Cadastrar alunos"}
-          description={"Cadastrar ou listar alunos"}
-          modalTitle={"Cadastrar Alunos"}
-          label1={"Nome"}
-          label2={"Email"}
-          buttonTitle={"Cadastrar"}
-          label3={"Cadastrar alunos via arquivo CSV"}
+        <ModalCadastroAlunoEProfessor
+          title={"Cadastrar Alunos"}
+          description={"Cadastrar um ou mais alunos"}
         />
-        <ModalCadastro
+
+        <ModalCadastroAlunoEProfessor
           title={"Cadastrar Professores"}
-          description={"Cadastrar ou listar professores"}
-          modalTitle={"Cadastrar Professores"}
-          label1={"Nome"}
-          label2={"Email"}
-          buttonTitle={"Cadastrar"}
-          label3={"Cadastrar professores via arquivo CSV"}
+          description={"Cadastrar um ou mais professores"}
         />
+
         <ModalCadastro
           title={"Gerenciar Monitores"}
           description={"Cadastre monitores e seus horários"}
@@ -48,16 +43,7 @@ export default function HomeAdmin() {
           className="overflow-y-scroll"
         />
 
-        <ModalCadastro
-          title={"Gerenciar Disciplinas"}
-          description={"Cadastre e crie exercícios para a disciplina"}
-          modalTitle={"Gerenciar Disciplinas"}
-          label1={"Código da disciplina"}
-          label2={"Nome da disciplina"}
-          buttonTitle={"Cadastrar"}
-          label3={"Cadastrar exercícios para uma disciplina"}
-          isDisciplinaModal={true}
-        />
+        <ModalCadastroDisciplina />
 
         <Link href="/ranking">
           <Dialog>
@@ -70,7 +56,46 @@ export default function HomeAdmin() {
             </DialogTrigger>
           </Dialog>
         </Link>
+
+        <ModalCadastroMonitor
+          title={"Gerenciar Monitores"}
+          description={"Cadastre monitores e seus horários"}
+        />
       </div>
     </main>
   );
+}
+
+{
+  /* <ModalCadastro
+title={"Gerenciar Disciplinas"}
+description={"Cadastre e crie exercícios para a disciplina"}
+modalTitle={"Gerenciar Disciplinas"}
+label1={"Código da disciplina"}
+  label2={"Nome da disciplina"}
+  buttonTitle={"Cadastrar"}
+  label3={"Cadastrar exercícios para uma disciplina"}
+  isDisciplinaModal={true}
+/> */
+}
+
+{
+  /* <ModalCadastro
+    title={"Cadastrar alunos"}
+    description={"Cadastrar ou listar alunos"}
+    modalTitle={"Cadastrar Alunos"}
+    label1={"Nome"}
+    label2={"Email"}
+    buttonTitle={"Cadastrar"}
+    label3={"Cadastrar alunos via arquivo CSV"}
+  />
+  <ModalCadastro
+    title={"Cadastrar Professores"}
+    description={"Cadastrar ou listar professores"}
+    modalTitle={"Cadastrar Professores"}
+    label1={"Nome"}
+    label2={"Email"}
+    buttonTitle={"Cadastrar"}
+    label3={"Cadastrar professores via arquivo CSV"}
+  /> */
 }

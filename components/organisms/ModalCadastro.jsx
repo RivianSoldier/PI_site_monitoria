@@ -13,7 +13,6 @@ export const ModalCadastro = ({
   buttonTitle,
   isMonitorModal,
   isDisciplinaModal,
-  isRanking,
   isMonitorScreen,
   disciplina,
   tituloExercicio,
