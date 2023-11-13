@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import {
-  Form,
   FormField,
   FormLabel,
   FormMessage,
@@ -580,14 +579,16 @@ export const ModalCadastroMonitor = ({ title, description }) => {
                   {/* --------------------------------------------------------------------------------------------------------------------------------------- */}
                 </Tabs>
               </div>
-              <Button className="w-full" type="submit">
-                Cadastrar
-              </Button>
-              <Link className="w-full" href="/horario_monitor">
-                <Button className="w-full" variant="secondary">
-                  Visualizar Horários dos Monitores
+              <div className="flex flex-col gap-3">
+                <Button className="w-full" type="submit">
+                  Cadastrar
                 </Button>
-              </Link>
+                <Link className="w-full" href="/horario_monitor">
+                  <Button className="w-full" variant="secondary">
+                    Visualizar Horários dos Monitores
+                  </Button>
+                </Link>
+              </div>
             </form>
           </FormProvider>
         </DialogHeader>

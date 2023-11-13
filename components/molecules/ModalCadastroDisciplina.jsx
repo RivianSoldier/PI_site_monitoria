@@ -96,7 +96,7 @@ export const ModalCadastroDisciplina = () => {
               </Button>
               <div>
                 <Dialog>
-                  <DialogTrigger className="w-full mb-8" asChild>
+                  <DialogTrigger className="w-full mb-4" asChild>
                     <Button className="w-full" variant="secondary">
                       Cadastre exercicios para uma disciplina
                     </Button>

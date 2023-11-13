@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 
@@ -21,7 +21,6 @@ export default function Home() {
           description={"Cadastre exercícios para os alunos resolverem"}
           modalTitle={"Cadastrar Exercícios"}
           isMonitorScreenExModal={true}
-          
         />
 
         <ModalCadastro
@@ -40,7 +39,6 @@ export default function Home() {
           <Dialog>
             <DialogTrigger>
               <CardUsuarios
-                onClick={() => {}}
                 title={"Ranking de Alunos"}
                 description={"Vizualize o ranking de alunos"}
               />

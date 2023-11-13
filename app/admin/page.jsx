@@ -1,11 +1,9 @@
 "use client";
-import React from "react";
 
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 
 import { Navbar } from "@/components/organisms/Navbar";
-import { ModalCadastro } from "@/components/organisms/ModalCadastro";
 import { CardUsuarios } from "@/components/molecules/CardUsuarios";
 import { ModalCadastroAlunoEProfessor } from "@/components/molecules/ModalCadastroAlunoEProfessor";
 import { ModalCadastroDisciplina } from "@/components/molecules/ModalCadastroDisciplina";
@@ -31,16 +29,9 @@ export default function HomeAdmin() {
           description={"Cadastrar um ou mais professores"}
         />
 
-        <ModalCadastro
+        <ModalCadastroMonitor
           title={"Gerenciar Monitores"}
           description={"Cadastre monitores e seus horários"}
-          modalTitle={"Cadastrar Monitores"}
-          label1={"Nome"}
-          label2={"Email"}
-          buttonTitle={"Cadastrar"}
-          label3={"Cadastrar monitores via arquivo CSV"}
-          isMonitorModal={true}
-          className="overflow-y-scroll"
         />
 
         <ModalCadastroDisciplina />
@@ -49,53 +40,13 @@ export default function HomeAdmin() {
           <Dialog>
             <DialogTrigger>
               <CardUsuarios
-                onClick={() => {}}
                 title={"Ranking de Alunos"}
                 description={"Vizualize o ranking de alunos"}
               />
             </DialogTrigger>
           </Dialog>
         </Link>
-
-        <ModalCadastroMonitor
-          title={"Gerenciar Monitores"}
-          description={"Cadastre monitores e seus horários"}
-        />
       </div>
     </main>
   );
-}
-
-{
-  /* <ModalCadastro
-title={"Gerenciar Disciplinas"}
-description={"Cadastre e crie exercícios para a disciplina"}
-modalTitle={"Gerenciar Disciplinas"}
-label1={"Código da disciplina"}
-  label2={"Nome da disciplina"}
-  buttonTitle={"Cadastrar"}
-  label3={"Cadastrar exercícios para uma disciplina"}
-  isDisciplinaModal={true}
-/> */
-}
-
-{
-  /* <ModalCadastro
-    title={"Cadastrar alunos"}
-    description={"Cadastrar ou listar alunos"}
-    modalTitle={"Cadastrar Alunos"}
-    label1={"Nome"}
-    label2={"Email"}
-    buttonTitle={"Cadastrar"}
-    label3={"Cadastrar alunos via arquivo CSV"}
-  />
-  <ModalCadastro
-    title={"Cadastrar Professores"}
-    description={"Cadastrar ou listar professores"}
-    modalTitle={"Cadastrar Professores"}
-    label1={"Nome"}
-    label2={"Email"}
-    buttonTitle={"Cadastrar"}
-    label3={"Cadastrar professores via arquivo CSV"}
-  /> */
 }
