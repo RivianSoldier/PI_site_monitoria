@@ -125,14 +125,16 @@ export default async function TelaExercicios({
                     )}
                   </DialogContent>
                 </Dialog>
-                <div className="flex justify-evenly gap-2">
-                  <Button className="w-1/2" variant="secondary">
-                    Editar
-                  </Button>
-                  <Button className="w-1/2" variant="destructive">
-                    Excluir
-                  </Button>
-                </div>
+                {!isProfessor && (
+                  <div className="flex justify-evenly gap-2">
+                    <Button className="w-1/2" variant="secondary">
+                      Editar
+                    </Button>
+                    <Button className="w-1/2" variant="destructive">
+                      Excluir
+                    </Button>
+                  </div>
+                )}
               </DialogContent>
             </Dialog>
           ))}
