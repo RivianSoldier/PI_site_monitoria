@@ -1,10 +1,11 @@
-'use client';
+"use client";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 
 import { Navbar } from "@/components/organisms/Navbar";
 import { ModalCadastro } from "@/components/organisms/ModalCadastro";
 import { CardUsuarios } from "@/components/molecules/CardUsuarios";
+import { ModalGerenciarHoraMonitor } from "@/components/molecules/ModalGerenciarHoraMonitor";
 
 export default function Home() {
   return (
@@ -21,10 +22,9 @@ export default function Home() {
           description={"Cadastre exercícios para os alunos resolverem"}
           modalTitle={"Cadastrar Exercícios"}
           isMonitorScreenExModal={true}
-          
         />
 
-        <ModalCadastro
+        {/* <ModalCadastro
           title={"Gerenciar Horários"}
           description={"Cadastre e atualize horários de monitoria"}
           modalTitle={"Gerenciar Horários"}
@@ -35,12 +35,17 @@ export default function Home() {
           isMonitorModal={true}
           className="overflow-y-scroll"
           isMonitorScreen={true}
+        /> */}
+
+        <ModalGerenciarHoraMonitor
+          title={"Gerenciar Horários"}
+          description={"Cadastre e atualize horários de monitoria"}
         />
+
         <Link href="/ranking">
           <Dialog>
             <DialogTrigger>
               <CardUsuarios
-                onClick={() => {}}
                 title={"Ranking de Alunos"}
                 description={"Vizualize o ranking de alunos"}
               />

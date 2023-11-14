@@ -101,7 +101,6 @@ export default async function TelaExercicios({
                       {modifyAccess ? "Visualizar respostas" : "Responder"}
                     </Button>
                   </DialogTrigger>
-
                   <DialogContent className="overflow-auto max-h-screen pt-12">
                     {modifyAccess ? (
                       users.map((user) => (
