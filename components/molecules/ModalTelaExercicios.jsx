@@ -1,4 +1,8 @@
 "use client";
+
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, FormProvider } from "react-hook-form";
 import {
   Dialog,
   DialogContent,
@@ -13,9 +17,34 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  FormField,
+  FormLabel,
+  FormMessage,
+  FormItem,
+  FormControl,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
+
+const FormSchema = z.object({
+  resposta: z.string().min(10, {
+    message: "A resposta deve ter no mínimo 10 caracteres.",
+  }),
+});
+
+const FormSchemaNota = z.object({
+  nota: z
+    .string()
+    .refine((value) => !isNaN(parseInt(value)), {
+      message: "A nota deve ser um número válido.",
+    })
+    .transform((value) => {
+      const intValue = parseInt(value);
+      return intValue;
+    }),
+});
 
 export const ModalTelaExercicios = ({
   viewOnly,
@@ -24,6 +53,28 @@ export const ModalTelaExercicios = ({
   body,
   id,
 }) => {
+  const form = useForm({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      resposta: "",
+    },
+  });
+
+  const formNota = useForm({
+    resolver: zodResolver(FormSchemaNota),
+    defaultValues: {
+      nota: 0,
+    },
+  });
+
+  function onSubmit(data) {
+    console.log(data);
+  }
+
+  function onSubmitNota(data) {
+    console.log(data);
+  }
+
   return (
     <div>
       {modifyAccess ? (
@@ -40,16 +91,35 @@ export const ModalTelaExercicios = ({
                   {body}
                   {!viewOnly && (
                     <>
-                      <Label>Atribuir nota</Label>
-                      <div className="flex flex-row gap-3">
-                        <Input
-                          type="number"
-                          min="1"
-                          max="10"
-                          className="w-1/2"
-                        />
-                        <Button className="w-1/2">Enviar</Button>
-                      </div>
+                      <FormProvider {...formNota}>
+                        <form
+                          className="w-full space-y-3"
+                          onSubmit={formNota.handleSubmit(onSubmitNota)}
+                        >
+                          <FormField
+                            control={formNota.control}
+                            name="nota"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Atribuir Nota</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="number"
+                                    min="0"
+                                    max="10"
+                                    placeholder="Insira aqui a nota"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage name="nota" />
+                              </FormItem>
+                            )}
+                          />
+                          <Button className="w-full" type="submit">
+                            Enviar
+                          </Button>
+                        </form>
+                      </FormProvider>
                     </>
                   )}
                 </DialogDescription>
@@ -62,8 +132,32 @@ export const ModalTelaExercicios = ({
           <CardContent className="flex flex-col items-center p-2 flex-grow justify-between gap-3">
             <CardTitle className="text-start text-sm">{name}</CardTitle>
             <CardDescription>{body}</CardDescription>
-            <Textarea />
-            <Button className="w-full">Enviar</Button>
+            <FormProvider {...form}>
+              <form
+                className="w-full space-y-3"
+                onSubmit={form.handleSubmit(onSubmit)}
+              >
+                <FormField
+                  control={form.control}
+                  name="resposta"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Resposta</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Insira aqui sua resposta"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage name="resposta" />
+                    </FormItem>
+                  )}
+                />
+                <Button className="w-full" type="submit">
+                  Enviar
+                </Button>
+              </form>
+            </FormProvider>
           </CardContent>
         </Card>
       )}

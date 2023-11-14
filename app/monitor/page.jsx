@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/organisms/Navbar";
 import { ModalCadastro } from "@/components/organisms/ModalCadastro";
 import { CardUsuarios } from "@/components/molecules/CardUsuarios";
+import { ModalGerenciarHoraMonitor } from "@/components/molecules/ModalGerenciarHoraMonitor";
 
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ export default function Home() {
           isMonitorScreenExModal={true}
         />
 
-        <ModalCadastro
+        {/* <ModalCadastro
           title={"Gerenciar Horários"}
           description={"Cadastre e atualize horários de monitoria"}
           modalTitle={"Gerenciar Horários"}
@@ -34,7 +35,13 @@ export default function Home() {
           isMonitorModal={true}
           className="overflow-y-scroll"
           isMonitorScreen={true}
+        /> */}
+
+        <ModalGerenciarHoraMonitor
+          title={"Gerenciar Horários"}
+          description={"Cadastre e atualize horários de monitoria"}
         />
+
         <Link href="/ranking">
           <Dialog>
             <DialogTrigger>

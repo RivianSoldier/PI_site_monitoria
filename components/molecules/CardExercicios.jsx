@@ -127,7 +127,7 @@ export const CardExercicios = ({ isMonitorScreenExModal }) => {
         </Form>
       </DialogHeader>
       {isMonitorScreenExModal && (
-        <Link className="w-full" href="/exercicios">
+        <Link className="w-full" href="monitor/exercicios">
           <Button className="w-full" variant="secondary">
             Visualizar exercícios
           </Button>
