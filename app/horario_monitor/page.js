@@ -3,97 +3,135 @@ import { Navbar } from "@/components/organisms/Navbar";
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectItem,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Monitor } from "lucide-react";
+
 
 export default function TelaMonitor() {
-  const monitores = [
+  const MonitorPresencial = [
     {
-      nome: "Monitor1",
-      horarios: [
-        "        ",
-        "horário1",
-        "horário2",
-        "horário3",
-        "horário4",
-        "horário5",
-        "horário6",
-      ],
+      Monitor: "Ana Luisa da Silva",
+      Segunda: ['13h30 às 16h30'],
+      Terca: null,
+      Quarta: null,
+      Quinta: ['13h30 às 15h30'],
+      Sexta: null,
     },
     {
-      nome: "Monitor2",
-      horarios: [
-        "        ",
-        "horário1",
-        "horário2",
-        "horário3",
-        "horário4",
-        "horário5",
-        "horário6",
-      ],
+      Monitor: "Carlos Henrique Lucena Barros",
+      Segunda: ['14h00 às 16h30'],
+      Terca: null,
+      Quarta: ['14h00 às 16h30'],
+      Quinta: null,
+      Sexta: null,
     },
     {
-      nome: "Monitor3",
-      horarios: [
-        "        ",
-        "horário1",
-        "horário2",
-        "horário3",
-        "horário4",
-        "horário5",
-        "horário6",
-      ],
+      Monitor: "Débora Witkowski",
+      Segunda: ['15h00 às 16h00'],
+      Terca: null,
+      Quarta: null,
+      Quinta: null,
+      Sexta: ['13h10 às 17h10'],
     },
     {
-      nome: "Monitor4",
-      horarios: [
-        "        ",
-        "horário1",
-        "horário2",
-        "horário3",
-        "horário4",
-        "horário5",
-        "horário6",
-      ],
+      Monitor: "Gustavo Lourenço Losada",
+      Segunda: ['13h00 às 16h00'],
+      Terca: ['13h00 às 14h00'],
+      Quarta: ['13h00 às 14h00'],
+      Quinta: null,
+      Sexta: null,
     },
     {
-      nome: "Monitor5",
-      horarios: [
-        "        ",
-        "horário1",
-        "horário2",
-        "horário3",
-        "horário4",
-        "horário5",
-        "horário6",
-      ],
+      Monitor: "Leonardo Cazotto Stuber",
+      Segunda: ['13h30 às 16h30'],
+      Terca: null,
+      Quarta: null,
+      Quinta: null,
+      Sexta: ['13h00 às 15h00'],
     },
     {
-      nome: "Monitor6",
-      horarios: [
-        "        ",
-        "horário1",
-        "horário2",
-        "horário3",
-        "horário4",
-        "horário5",
-        "horário6",
-      ],
+      Monitor: "Mateus Capaldo",
+      Segunda: ['14h00 às 16h00'],
+      Terca: null,
+      Quarta: null,
+      Quinta: ['13h00 às 16h00'],
+      Sexta: null,
     },
+    {
+      Monitor: "Luigi Guimarães Trevisan",
+      Segunda: ['13h00 às 16h00'],
+      Terca: ['13h00 às 16h00'],
+      Quarta: ['13h00 às 16h00'],
+      Quinta: ['13h00 às 16h00'],
+      Sexta: null,
+    },
+
   ];
+
+  const MonitorOnline = [
+    {
+      Monitor: "Ana Luisa da Silva",
+      Segunda: null,
+      Terca: null,
+      Quarta: ['13h00 às 15h30'],
+      Quinta: null,
+      Sexta: ['14h00 às 16h30'],
+    },
+    {
+      Monitor: "Carlos Henrique Lucena Barros",
+      Segunda: ['18h30 às 20h00'],
+      Terca: ['14h30 às 16h30', '19h00 às 20h30'],
+      Quarta: null,
+      Quinta: null,
+      Sexta: null,
+    },
+    {
+      Monitor: "Débora Witkowski",
+      Segunda: null,
+      Terca: ['15h30 às 16h30'],
+      Quarta: ['14h30 às 17h30'],
+      Quinta: ['13h30 às 15h30'],
+      Sexta: null,
+    },
+    {
+      Monitor: "Gustavo Lourenço Losada",
+      Segunda: null,
+      Terca: ['14h30 às 15h30'],
+      Quarta: ['14h30 às 16h30'],
+      Quinta: null,
+      Sexta: ['13h30 às 15h30'],
+    },
+    {
+      Monitor: "Leonardo Cazotto Stuber",
+      Segunda: null,
+      Terca: null,
+      Quarta: null,
+      Quinta: ['15h30 às 20h30'],
+      Sexta: null,
+    },
+    {
+      Monitor: "Mateus Capaldo",
+      Segunda: null,
+      Terca: ['19h00 às 20h30'],
+      Quarta: ['19h00 às 20h30'],
+      Quinta: null,
+      Sexta: ['13h30 às 15h30'],
+    },
+    {
+      Monitor: "Luigi Guimarães Trevisan",
+      Segunda: ['16h30 às 17h30'],
+      Terca: ['16h30 às 17h30'],
+      Quarta: ['16h30 às 17h30'],
+      Quinta: ['16h30 às 17h30'],
+      Sexta: ['16h30 às 17h30'],
+    },
+  ]
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
@@ -102,47 +140,115 @@ export default function TelaMonitor() {
           Horários dos Monitores
         </p>
       </div>
-      <div className="flex justify-start">
-        <div className="pb-4 flex flex-col justify-start w-full">
-          <Select>
-            <SelectTrigger className="w-full ">
-              <SelectValue placeholder="Selecione um horário" />
-            </SelectTrigger>
-            <SelectContent className="w-80 md:w-full ml-auto">
-              <SelectGroup>
-                <SelectLabel></SelectLabel>
-                <SelectItem value="presencial">
-                  Presencial
-                </SelectItem>
-                <SelectItem value="online">
-                  Online
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>      
-      </div>
-      <div className="rounded-lg border-2 border-slate-900 w-80 sm:w-[500px] md:w-[752px] lg:w-[1000px] xl:w-[1264px] mt-4">
-        <Table className="bg-slate-50 rounded-md">
-          <TableHeader>
-            <TableRow>
-              {monitores[0].horarios.map((horario, index) => (
-                <TableHead className="py-6 text-center" key={index}>
-                  {horario}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {monitores.map((monitor, index) => (
-              <TableRow className="text-center" key={index}>
-                <TableCell className="py-5 font-medium">
-                  {monitor.nome}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <div className="flex justify-start w-full ">
+        <Tabs defaultValue="presencial" className="w-full px-0 lg:px-24">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="presencial">Presencial</TabsTrigger>
+            <TabsTrigger value="online">Online</TabsTrigger>
+          </TabsList>
+          <TabsContent value="presencial" className='overflow-scroll'>
+            <table className="bg-slate-50 rounded-md w-full overflow-x-auto">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[100px]">Monitor</TableHead>
+                  <TableHead className="text-center">Segunda</TableHead>
+                  <TableHead className="text-center">Terça</TableHead>
+                  <TableHead className="text-center">Quarta</TableHead>
+                  <TableHead className="text-center">Quinta</TableHead>
+                  <TableHead className="text-center">Sexta</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {MonitorPresencial.map((monitor) => (
+                  <TableRow key={monitor.Monitor}>
+                    <TableCell>{monitor.Monitor}</TableCell>
+                    <TableCell>
+                      {monitor.Segunda &&
+                        monitor.Segunda.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Terca &&
+                        monitor.Terca.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Quarta &&
+                        monitor.Quarta.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Quinta &&
+                        monitor.Quinta.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Sexta &&
+                        monitor.Sexta.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </table>
+          </TabsContent>
+          <TabsContent value="online" className='overflow-scroll'>
+            <table className="bg-slate-50 rounded-md w-full overflow-x-auto">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[100px]">Monitor</TableHead>
+                  <TableHead className="text-center">Segunda</TableHead>
+                  <TableHead className="text-center">Terça</TableHead>
+                  <TableHead className="text-center">Quarta</TableHead>
+                  <TableHead className="text-center">Quinta</TableHead>
+                  <TableHead className="text-center">Sexta</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {MonitorOnline.map((monitor) => (
+                  <TableRow key={monitor.Monitor}>
+                    <TableCell>{monitor.Monitor}</TableCell>
+                    <TableCell>
+                      {monitor.Segunda &&
+                        monitor.Segunda.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Terca &&
+                        monitor.Terca.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Quarta &&
+                        monitor.Quarta.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Quinta &&
+                        monitor.Quinta.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                    <TableCell>
+                      {monitor.Sexta &&
+                        monitor.Sexta.map((horario, index) => (
+                          <div key={index}>{horario}</div>
+                        ))}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </table>
+          </TabsContent>
+        </Tabs>
       </div>
     </main>
   );
