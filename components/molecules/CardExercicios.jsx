@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import { useToast } from "../ui/use-toast";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const disTituloDescSchema = z.object({
   disciplina: z.string({ required_error: "Selecione uma disciplina." }),
@@ -37,6 +39,7 @@ const disTituloDescSchema = z.object({
 });
 
 export const CardExercicios = ({ isMonitorScreenExModal }) => {
+  const { toast } = useToast();
   const disTituloDescForm = useForm({
     resolver: zodResolver(disTituloDescSchema),
     defaultValues: {
@@ -47,6 +50,16 @@ export const CardExercicios = ({ isMonitorScreenExModal }) => {
   });
 
   function onSubmit(data) {
+    toast({
+      title: "Exercício cadastrado com sucesso!",
+      description: (
+        <div>
+          <p>Disciplina: {data.disciplina}</p>
+          <p>Título: {data.tituloExercicio}</p>
+          <p>Descrição: {data.descricaoExercicio}</p>
+        </div>
+      ),
+    });
     console.log("Dados do formulário:", data);
   }
 
@@ -56,7 +69,7 @@ export const CardExercicios = ({ isMonitorScreenExModal }) => {
         <Form {...disTituloDescForm}>
           <form
             onSubmit={disTituloDescForm.handleSubmit(onSubmit)}
-            className="w-full space-y-6"
+            className="w-full space-y-4"
           >
             <FormField
               control={disTituloDescForm.control}
@@ -111,7 +124,7 @@ export const CardExercicios = ({ isMonitorScreenExModal }) => {
                   <FormLabel>Descrição do exercício</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="max-h-72"
+                      className="max-h-72 "
                       placeholder="Escreva o exercício neste espaço"
                       {...field}
                     />
@@ -120,9 +133,11 @@ export const CardExercicios = ({ isMonitorScreenExModal }) => {
                 </FormItem>
               )}
             />
-            <Button className="w-full" type="submit">
-              Salvar exercício
-            </Button>
+            <DialogClose asChild>
+              <Button className="w-full" type="submit">
+                Salvar exercício
+              </Button>
+            </DialogClose>
           </form>
         </Form>
       </DialogHeader>

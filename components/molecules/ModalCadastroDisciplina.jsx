@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/form";
 import { CardUsuarios } from "./CardUsuarios";
 import { CardExercicios } from "./CardExercicios";
+import { useToast } from "../ui/use-toast";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const codENomeSchema = z.object({
   codDisciplina: z
@@ -36,6 +38,7 @@ const codENomeSchema = z.object({
 });
 
 export const ModalCadastroDisciplina = () => {
+  const { toast } = useToast();
   const codENomeForm = useForm({
     resolver: zodResolver(codENomeSchema),
     defaultValues: {
@@ -45,6 +48,15 @@ export const ModalCadastroDisciplina = () => {
   });
 
   function onSubmit(data) {
+    toast({
+      title: "Disciplina cadastrada com sucesso!",
+      description: (
+        <div>
+          <p>Código: {data.codDisciplina}</p>
+          <p>Nome: {data.nomeDisciplina}</p>
+        </div>
+      ),
+    });
     console.log("Dados do formulário:", data);
   }
 
@@ -72,7 +84,7 @@ export const ModalCadastroDisciplina = () => {
                   <FormItem>
                     <FormLabel>Código da disciplina</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nome" {...field} />
+                      <Input placeholder="Código" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -85,15 +97,17 @@ export const ModalCadastroDisciplina = () => {
                   <FormItem>
                     <FormLabel>Nome da disciplina</FormLabel>
                     <FormControl>
-                      <Input placeholder="Email" {...field} />
+                      <Input placeholder="Nome" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button className="w-full" type="submit">
-                Cadastrar
-              </Button>
+              <DialogClose asChild>
+                <Button className="w-full" type="submit">
+                  Cadastrar
+                </Button>
+              </DialogClose>
               <div>
                 <Dialog>
                   <DialogTrigger className="w-full mb-4" asChild>

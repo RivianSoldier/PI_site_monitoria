@@ -25,8 +25,9 @@ import {
   FormControl,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
+import { useToast } from "../ui/use-toast";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const FormSchema = z.object({
   resposta: z.string().min(10, {
@@ -53,6 +54,7 @@ export const ModalTelaExercicios = ({
   body,
   id,
 }) => {
+  const { toast } = useToast();
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -68,10 +70,21 @@ export const ModalTelaExercicios = ({
   });
 
   function onSubmit(data) {
+    toast({
+      description: "Resposta enviada com sucesso!",
+    });
     console.log(data);
   }
 
   function onSubmitNota(data) {
+    toast({
+      title: "Nota atribuída com sucesso!",
+      description: (
+        <div>
+          <p>Nota: {data.nota}</p>
+        </div>
+      ),
+    });
     console.log(data);
   }
 
@@ -115,9 +128,11 @@ export const ModalTelaExercicios = ({
                               </FormItem>
                             )}
                           />
-                          <Button className="w-full" type="submit">
-                            Enviar
-                          </Button>
+                          <DialogClose asChild>
+                            <Button className="w-full" type="submit">
+                              Enviar
+                            </Button>
+                          </DialogClose>
                         </form>
                       </FormProvider>
                     </>
@@ -153,9 +168,11 @@ export const ModalTelaExercicios = ({
                     </FormItem>
                   )}
                 />
-                <Button className="w-full" type="submit">
-                  Enviar
-                </Button>
+                <DialogClose asChild>
+                  <Button className="w-full" type="submit">
+                    Enviar
+                  </Button>
+                </DialogClose>
               </form>
             </FormProvider>
           </CardContent>

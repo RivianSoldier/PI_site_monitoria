@@ -22,6 +22,7 @@ export default function HomeAdmin() {
         <ModalCadastroAlunoEProfessor
           title={"Cadastrar Alunos"}
           description={"Cadastrar um ou mais alunos"}
+          isAluno={true}
         />
 
         <ModalCadastroAlunoEProfessor

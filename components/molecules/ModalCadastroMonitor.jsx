@@ -24,6 +24,8 @@ import { CardUsuarios } from "./CardUsuarios";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
+import { useToast } from "../ui/use-toast";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const timeField = () => {
   return z
@@ -61,6 +63,7 @@ const formSchema = z.object({
 });
 
 export const ModalCadastroMonitor = ({ title, description }) => {
+  const { toast } = useToast();
   const nomeEmailForm = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -90,6 +93,15 @@ export const ModalCadastroMonitor = ({ title, description }) => {
   });
 
   function onSubmit(data) {
+    toast({
+      title: "Monitor cadastrado com sucesso!",
+      description: (
+        <div>
+          <p>Nome: {data.name}</p>
+          <p>Email: {data.email}</p>
+        </div>
+      ),
+    });
     console.log(data);
   }
 
@@ -580,9 +592,11 @@ export const ModalCadastroMonitor = ({ title, description }) => {
                 </Tabs>
               </div>
               <div className="flex flex-col gap-3">
-                <Button className="w-full" type="submit">
-                  Cadastrar
-                </Button>
+                <DialogClose asChild>
+                  <Button className="w-full" type="submit">
+                    Cadastrar
+                  </Button>
+                </DialogClose>
                 <Link className="w-full" href="/horario_monitor">
                   <Button className="w-full" variant="secondary">
                     Visualizar Horários dos Monitores

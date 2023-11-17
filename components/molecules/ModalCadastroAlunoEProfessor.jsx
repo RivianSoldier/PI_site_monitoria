@@ -21,13 +21,20 @@ import {
   FormControl,
 } from "@/components/ui/form";
 import { CardUsuarios } from "./CardUsuarios";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { useToast } from "../ui/use-toast";
 
 const nomeESenhaSchema = z.object({
   name: z.string().min(3, "Nome muito curto").max(100, "Nome muito longo"),
   email: z.string().email("E-mail inválido"),
 });
 
-export const ModalCadastroAlunoEProfessor = ({ title, description }) => {
+export const ModalCadastroAlunoEProfessor = ({
+  title,
+  description,
+  isAluno,
+}) => {
+  const { toast } = useToast();
   const nomeEmailForm = useForm({
     resolver: zodResolver(nomeESenhaSchema),
     defaultValues: {
@@ -37,9 +44,19 @@ export const ModalCadastroAlunoEProfessor = ({ title, description }) => {
   });
 
   function onSubmit(data) {
+    toast({
+      title: isAluno
+        ? "Aluno cadastrado com sucesso!"
+        : "Professor cadastrado com sucesso!",
+      description: (
+        <div>
+          <p>Nome: {data.name}</p>
+          <p>Email: {data.email}</p>
+        </div>
+      ),
+    });
     console.log("Dados do formulário:", data);
   }
-
   return (
     <Dialog>
       <DialogTrigger>
@@ -80,19 +97,23 @@ export const ModalCadastroAlunoEProfessor = ({ title, description }) => {
                   </FormItem>
                 )}
               />
-              <Button className="w-full" type="submit">
-                Cadastrar
-              </Button>
-              <div>
-                <FormLabel htmlFor="CSV_cadastro">
-                  Cadastre usando arquivo CSV
-                </FormLabel>
-                <Input
-                  className="cursor-pointer"
-                  id="CSV_cadastro"
-                  type="file"
-                />
-              </div>
+              <DialogClose asChild>
+                <Button className="w-full" type="submit">
+                  Cadastrar
+                </Button>
+              </DialogClose>
+              <DialogClose asChild>
+                <div>
+                  <FormLabel htmlFor="CSV_cadastro">
+                    Cadastre usando arquivo CSV
+                  </FormLabel>
+                  <Input
+                    className="cursor-pointer"
+                    id="CSV_cadastro"
+                    type="file"
+                  />
+                </div>
+              </DialogClose>
             </form>
           </FormProvider>
         </DialogHeader>

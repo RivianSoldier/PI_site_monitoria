@@ -80,9 +80,7 @@ export default async function TelaExercicios({
               <DialogTrigger asChild>
                 <Button>Cadastrar novo exercício</Button>
               </DialogTrigger>
-              <CardExercicios
-                title={"Cadastrar novo exercício para uma disciplina"}
-              />
+              <CardExercicios />
             </Dialog>
           )}
         </div>
