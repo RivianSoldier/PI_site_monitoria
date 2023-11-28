@@ -11,16 +11,7 @@ export const SignInButton = () => {
       instance
         .loginPopup(loginRequest)
         .then(() => {
-          window.location.href = "/admin"; // Redirect to /admin after successful login
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    } else if (loginType === "redirect") {
-      instance
-        .loginRedirect(loginRequest)
-        .then(() => {
-          window.location.href = "/admin"; // Redirect to /admin after successful login
+          window.location.href = "/admin";
         })
         .catch((e) => {
           console.log(e);
@@ -28,14 +19,13 @@ export const SignInButton = () => {
     }
   };
   return (
-    <div className="w-full flex flex-col justify-center gap-4">
-      <Button
-        className="w-64 flex justify-evenly"
-        onClick={() => handleLogin("popup")}
-      >
-        Login com Microsoft
-        <TfiMicrosoftAlt />
-      </Button>
-    </div>
+    <Button
+      variant="outline"
+      className="w-64 flex justify-evenly border-black"
+      onClick={() => handleLogin("popup")}
+    >
+      Login com Microsoft
+      <TfiMicrosoftAlt />
+    </Button>
   );
 };
