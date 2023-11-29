@@ -1,5 +1,8 @@
 "use client";
+import React from 'react';
+
 import { Navbar } from "@/components/organisms/Navbar";
+
 import {
   Table,
   TableBody,
@@ -9,9 +12,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Monitor } from "lucide-react";
 
+import { Button } from "@/components/ui/button"
+
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function TelaMonitor() {
   const MonitorPresencial = [
@@ -132,6 +146,22 @@ export default function TelaMonitor() {
       Sexta: ['16h30 às 17h30'],
     },
   ]
+
+  const DropdownMonitor = () => [
+      <DropdownMenu key="dropdown">
+        <DropdownMenuTrigger key="trigger" asChild><Button variant="outline">Selecionar</Button></DropdownMenuTrigger>
+        <DropdownMenuContent key="content">
+          <DropdownMenuItem key="ana" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZGNhNWE2MTktN2RmMS00MTA2LTliYzItOTYyM2IxZGFhZDcy%40thread.v2/0?context=%7b%22Tid%22%3a%22c49e1939-4b53-4738-bb64-41fb2990e41c%22%2c%22Oid%22%3a%2235b6ebae-3bf1-42bc-bf2a-4bf1eecc4aa5%22%7d'}>Ana Luisa</DropdownMenuItem>
+          <DropdownMenuItem key="carlos" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZWU1ZWNmZjItNjQ4NC00YTEyLWFlYjEtZGJkNzRkNWM0NmI3%40thread.v2/0?context=%7b%22Tid%22%3a%22c49e1939-4b53-4738-bb64-41fb2990e41c%22%2c%22Oid%22%3a%221215aab8-89b9-4984-bfa1-38600c62fd57%22%7d'}>Carlos</DropdownMenuItem>
+          <DropdownMenuItem key="carlos" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTNkOThkMGUtNzVhYy00NjhkLWI0ZDEtZTc2NTk0YmFhMTVl%40thread.v2/0?context=%7b%22Tid%22%3a%22c49e1939-4b53-4738-bb64-41fb2990e41c%22%2c%22Oid%22%3a%22889acaa5-6d04-47b8-ba06-ba8ef1197c8a%22%7d'}>Débora</DropdownMenuItem>
+          <DropdownMenuItem key="carlos" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19:meeting_NWJlMTA2Y2ItNGE1MC00YWVlLTg3ZmItYmQxMjk1ZjI0NzRi@thread.v2/0?context=%7B%22Tid%22:%22c49e1939-4b53-4738-bb64-41fb2990e41c%22,%22Oid%22:%224d773a7b-f572-434d-b9c3-1af7afb55cc4%22%7D'}>Gustavo</DropdownMenuItem>
+          <DropdownMenuItem key="carlos" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_NzU1MGY1Y2EtODkyZi00MzJkLWI4ODgtOTY2MTY2N2ViNzBi%40thread.v2/0?context=%7b%22Tid%22%3a%22c49e1939-4b53-4738-bb64-41fb2990e41c%22%2c%22Oid%22%3a%2220f4627d-ee46-436b-a724-fad8c223e30c%22%7d'}>Leonardo</DropdownMenuItem>
+          <DropdownMenuItem key="carlos" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZDM5OWU1NjYtODU0OC00NjAzLWFkZjEtNDBiOTE4MWFmMmZh%40thread.v2/0?context=%7b%22Tid%22%3a%22c49e1939-4b53-4738-bb64-41fb2990e41c%22%2c%22Oid%22%3a%2225190100-ae73-45dd-8afe-a6a300deea87%22%7d'}>Mateus</DropdownMenuItem>
+          <DropdownMenuItem key="carlos" onClick={() => window.location.href = 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_NjhlNGFmMTMtZDViYS00Mzg1LTk3ZGUtOTFjNTIyZmIyYzlm%40thread.v2/0?context=%7b%22Tid%22%3a%22c49e1939-4b53-4738-bb64-41fb2990e41c%22%2c%22Oid%22%3a%22bc3255b7-fc18-4455-bfcd-548182525f4e%22%7d'}>Luigi</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+  ]
+
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gradient-to-br from-[#82A0BC] font-sans scroll-smooth">
       <Navbar />
@@ -249,6 +279,14 @@ export default function TelaMonitor() {
             </table>
           </TabsContent>
         </Tabs>
+      </div>
+      <div className="p-10">
+        <p className="font-sans text-3xl text-center font-bold">
+          Atendimento online
+        </p>
+      </div>
+      <div className="flex items-center justify-center">
+        <DropdownMonitor />
       </div>
     </main>
   );
